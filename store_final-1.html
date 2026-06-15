@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lavaux</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background: #FAF7F0; color: #2a1f1a; }
+
+/* ===== NAV ===== */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: #FAF7F0;
+  border-bottom: 1px solid #EDE0D0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* LAVAUX WAVE LOGO */
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 6px;
+  background: linear-gradient(105deg, #b8860b 0%, #f5d67a 30%, #C4A357 50%, #f5d67a 70%, #b8860b 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: waveGold 3s linear infinite;
+  transform: skewX(-6deg);
+  display: inline-block;
+}
+
+@keyframes waveGold {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { color: #666; text-decoration: none; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: #C4A357; }
+.nav-icons { display: flex; gap: 16px; font-size: 1rem; cursor: pointer; color: #555; }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+}
+
+#bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(250,247,240,0.82) 0%,
+    rgba(250,247,240,0.45) 45%,
+    rgba(250,247,240,0.0) 75%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  max-width: 440px;
+}
+
+.hero-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C4A357;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.hero-content h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #1a1208;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.hero-content p {
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  color: #6b5040;
+  margin-bottom: 34px;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+/* زر مع شعاع ذهبي */
+.btn-hero-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-hero-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 40px;
+  background: radial-gradient(ellipse, rgba(196,163,87,0.5) 0%, rgba(196,163,87,0.15) 60%, transparent 100%);
+  animation: pulseGlow 2s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.btn-hero {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  background: transparent;
+  color: #1a1208;
+  padding: 13px 34px;
+  border-radius: 30px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1.5px solid #C4A357;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 20px rgba(196,163,87,0.3), inset 0 0 20px rgba(196,163,87,0.05);
+}
+.btn-hero:hover {
+  background: #C4A357;
+  color: #fff;
+  box-shadow: 0 0 30px rgba(196,163,87,0.6);
+}
+
+/* ===== PRODUCTS SECTION ===== */
+.products-section {
+  position: relative;
+  padding: 70px 30px 80px;
+  background-image: url('https://files.catbox.moe/ulxkn1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.products-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(250,247,240,0.6);
+}
+
+.section-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.section-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C4A357;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #1a1208;
+  letter-spacing: 2px;
+}
+
+.products-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+  transition: transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(6px);
+}
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+
+.product-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #EDE0D0, #f5ede0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+}
+
+.product-info { padding: 16px; }
+.product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #1a1208;
+  letter-spacing: 0.5px;
+}
+.product-desc { font-size: 0.72rem; color: #aaa; margin-bottom: 14px; line-height: 1.5; letter-spacing: 0.5px; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-size: 1rem; font-weight: 600; color: #1a1208; letter-spacing: 1px; }
+
+.btn-add {
+  background: #E8773A;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-add:hover { background: #d4662a; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #1a1208;
+  color: rgba(255,255,255,0.45);
+  padding: 40px 30px 22px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto 28px;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 5px;
+  background: linear-gradient(105deg, #b8860b, #f5d67a, #C4A357);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  display: block;
+}
+.footer-col h4 { color: #C4A357; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; font-weight: 500; }
+.footer-col a {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: #C4A357; }
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 20px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+}
+.footer-bottom span { color: #C4A357; }
+
+@media (max-width: 600px) {
+  nav { padding: 12px 18px; }
+  .nav-links { display: none; }
+  .nav-logo { font-size: 1.5rem; }
+  .hero-content { left: 4%; max-width: 88%; top: auto; bottom: 18%; transform: none; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Lavaux</div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Offers</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-icons">🔍 &nbsp; 🛒</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <video id="bgVideo" autoplay muted loop playsinline preload="auto">
+    <source src="https://files.catbox.moe/tlxkh5.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Collection 2026</div>
+    <h1>Find Your Calm,<br>Discover Your Glow</h1>
+    <p>Luxury wellness products<br>crafted for your daily ritual</p>
+    <div class="btn-hero-wrap">
+      <div class="btn-hero-glow"></div>
+      <button class="btn-hero" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        Shop New Collections
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="section-header">
+    <div class="section-eyebrow">Our Signature Collection</div>
+    <h2 class="section-title">Best Sellers</h2>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">🧴</div>
+      <div class="product-info">
+        <div class="product-name">Deep Hydration Serum</div>
+        <div class="product-desc">Exceptional softness in just 7 days</div>
+        <div class="product-footer">
+          <span class="product-price">$19.90</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Aloe Calming Cream</div>
+        <div class="product-desc">Soothes redness and nourishes skin</div>
+        <div class="product-footer">
+          <span class="product-price">$13.90</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">✨</div>
+      <div class="product-info">
+        <div class="product-name">Glow Face Oil</div>
+        <div class="product-desc">Natural radiance and even skin tone</div>
+        <div class="product-footer">
+          <span class="product-price">$24.90</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🌸</div>
+      <div class="product-info">
+        <div class="product-name">Rose & Honey Mask</div>
+        <div class="product-desc">Nourishing mask for dry skin</div>
+        <div class="product-footer">
+          <span class="product-price">$17.50</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">💧</div>
+      <div class="product-info">
+        <div class="product-name">Brightening Toner</div>
+        <div class="product-desc">Balances skin and restores freshness</div>
+        <div class="product-footer">
+          <span class="product-price">$11.90</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">🍯</div>
+      <div class="product-info">
+        <div class="product-name">Honey Lip Balm</div>
+        <div class="product-desc">Moisturizes lips all day long</div>
+        <div class="product-footer">
+          <span class="product-price">$8.90</span>
+          <button class="btn-add">🛒 Add</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-logo">Lavaux</span>
+      <a href="#">Premium natural skincare</a>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#">Products</a>
+      <a href="#">Return Policy</a>
+      <a href="#">Track Order</a>
+    </div>
+    <div class="footer-col">
+      <h4>Follow Us</h4>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    All rights reserved © 2026 — <span>Lavaux</span>
+  </div>
+</footer>
+
+<script>
+  const v = document.getElementById('bgVideo');
+  v.play().catch(() => {});
+  document.addEventListener('touchstart', () => {
+    v.play().catch(() => {});
+  }, { once: true });
+</script>
+
+</body>
+</html>
